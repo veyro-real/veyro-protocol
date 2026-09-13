@@ -1,0 +1,8 @@
+node_modules/
+target/
+keys/
+.env*
+!.env.example
+*.tsbuildinfo
+packages/*/dist/
+deployment.local.json
