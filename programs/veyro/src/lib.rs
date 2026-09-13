@@ -6,6 +6,9 @@ use anchor_lang::solana_program::{
 use solana_instructions_sysvar::{load_current_index_checked, load_instruction_at_checked};
 
 declare_id!("2Z7xH99Z4YvG4U2Ew5PUZtVh8FE1VRhQ1Mo9dFvRvS3Q");
+pub const MAX_RECIPIENTS: usize = 8;
+pub const MAX_PROGRAMS: usize = 4;
+pub const POLICY_VERSION: u8 = 2;
 pub const TOKEN: Pubkey = pubkey!("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
 
 #[program]
@@ -34,11 +37,11 @@ pub mod veyro {
         ctx: Context<CreatePolicy>,
         agent: Pubkey,
         executor: Pubkey,
-        recipient: Pubkey,
+        allowed_recipients: Vec<Pubkey>,
         max_amount: u64,
         total_limit: u64,
         expires_at: i64,
-        allowed_program: Pubkey,
+        allowed_programs: Vec<Pubkey>,
         min_rate: u64,
     ) -> Result<()> {
         require!(
@@ -55,20 +58,18 @@ pub mod veyro {
                 && executor != ctx.accounts.owner.key(),
             VeyroError::InvalidPolicy
         );
-        require!(
-            allowed_program == TOKEN || allowed_program == Pubkey::default(),
-            VeyroError::ProgramNotAllowed
-        );
+        validate_allowlists(&allowed_recipients, &allowed_programs)?;
         let p = &mut ctx.accounts.policy;
+        p.version = POLICY_VERSION;
         p.owner = ctx.accounts.owner.key();
         p.agent = agent;
         p.executor = executor;
-        p.recipient = recipient;
+        p.allowed_recipients = allowed_recipients;
         p.pool = ctx.accounts.pool.key();
         p.max_amount = max_amount;
         p.total_limit = total_limit;
         p.expires_at = expires_at;
-        p.allowed_program = allowed_program;
+        p.allowed_programs = allowed_programs;
         p.min_rate = min_rate;
         p.spent = 0;
         p.nonce = 0;
@@ -82,6 +83,10 @@ pub mod veyro {
         Ok(())
     }
     pub fn revoke(ctx: Context<Manage>) -> Result<()> {
+        require!(
+            ctx.accounts.policy.version == POLICY_VERSION,
+            VeyroError::InvalidPolicy
+        );
         ctx.accounts.policy.active = false;
         emit!(Revoked {
             policy: ctx.accounts.policy.key(),
@@ -111,6 +116,7 @@ pub mod veyro {
         );
         // A wrapper program cannot pass the first.program_id check. This program never self-invokes.
         let p = &ctx.accounts.policy;
+        require!(p.version == POLICY_VERSION, VeyroError::InvalidPolicy);
         let pool = &ctx.accounts.pool;
         validate_spend(
             p.active,
@@ -123,7 +129,10 @@ pub mod veyro {
             p.spent,
             p.total_limit,
         )?;
-        require!(p.allowed_program == TOKEN, VeyroError::ProgramNotAllowed);
+        require!(
+            p.allowed_programs.contains(&TOKEN),
+            VeyroError::ProgramNotAllowed
+        );
         let output = amount.checked_mul(pool.rate).ok_or(VeyroError::Overflow)?;
         let floor = amount.checked_mul(p.min_rate).ok_or(VeyroError::Overflow)?;
         require!(
@@ -133,7 +142,16 @@ pub mod veyro {
         validate_token(&ctx.accounts.vault, &pool.quote_mint, &p.key())?;
         validate_token(&ctx.accounts.pool_quote, &pool.quote_mint, &pool.key())?;
         validate_token(&ctx.accounts.pool_output, &pool.output_mint, &pool.key())?;
-        validate_token(&ctx.accounts.recipient, &pool.output_mint, &p.recipient)?;
+        let recipient_authority = token_authority(&ctx.accounts.recipient)?;
+        require!(
+            p.allowed_recipients.contains(&recipient_authority),
+            VeyroError::RecipientNotAllowed
+        );
+        validate_token(
+            &ctx.accounts.recipient,
+            &pool.output_mint,
+            &recipient_authority,
+        )?;
         require!(
             ctx.accounts.vault.key() != ctx.accounts.pool_quote.key()
                 && ctx.accounts.pool_output.key() != ctx.accounts.recipient.key(),
@@ -182,6 +200,7 @@ pub mod veyro {
     }
     pub fn recover(ctx: Context<Recover>, amount: u64) -> Result<()> {
         let p = &ctx.accounts.policy;
+        require!(p.version == POLICY_VERSION, VeyroError::InvalidPolicy);
         require!(!p.active, VeyroError::MustRevoke);
         validate_token(&ctx.accounts.vault, &ctx.accounts.pool.quote_mint, &p.key())?;
         validate_token(
@@ -223,6 +242,33 @@ fn validate_spend(
         VeyroError::CumulativeLimitExceeded
     );
     Ok(())
+}
+fn validate_allowlists(recipients: &[Pubkey], programs: &[Pubkey]) -> Result<()> {
+    require!(
+        recipients.len() <= MAX_RECIPIENTS && programs.len() <= MAX_PROGRAMS,
+        VeyroError::InvalidPolicy
+    );
+    for (index, recipient) in recipients.iter().enumerate() {
+        require!(
+            !recipients[..index].contains(recipient),
+            VeyroError::InvalidPolicy
+        );
+    }
+    for (index, program) in programs.iter().enumerate() {
+        require!(
+            !programs[..index].contains(program),
+            VeyroError::InvalidPolicy
+        );
+    }
+    Ok(())
+}
+fn token_authority(info: &AccountInfo) -> Result<Pubkey> {
+    require_keys_eq!(*info.owner, TOKEN, VeyroError::InvalidAccounts);
+    let data = info.try_borrow_data()?;
+    require!(data.len() == 165, VeyroError::InvalidAccounts);
+    let mut authority = [0u8; 32];
+    authority.copy_from_slice(&data[32..64]);
+    Ok(Pubkey::new_from_array(authority))
 }
 // Classic SPL Token only. Reject extensions, delegates, frozen/uninitialized/native accounts.
 fn validate_token(info: &AccountInfo, mint: &Pubkey, authority: &Pubkey) -> Result<()> {
@@ -283,8 +329,8 @@ pub struct CreatePool<'info> {
 pub struct CreatePolicy<'info> {
     #[account(mut)]
     pub owner: Signer<'info>,
-    #[account(init, payer=owner, space=8+32*7+8*7+2, seeds=[b"policy",owner.key().as_ref(),agent.as_ref()], bump)]
-    pub policy: Account<'info, Policy>,
+    #[account(init, payer=owner, space=PolicyV2::SPACE, seeds=[b"policy",owner.key().as_ref(),agent.as_ref()], bump)]
+    pub policy: Account<'info, PolicyV2>,
     pub pool: Account<'info, Pool>,
     pub system_program: Program<'info, System>,
 }
@@ -292,14 +338,14 @@ pub struct CreatePolicy<'info> {
 pub struct Manage<'info> {
     pub owner: Signer<'info>,
     #[account(mut, has_one=owner, seeds=[b"policy",policy.owner.as_ref(),policy.agent.as_ref()],bump=policy.bump)]
-    pub policy: Account<'info, Policy>,
+    pub policy: Account<'info, PolicyV2>,
 }
 #[derive(Accounts)]
 pub struct ExecuteSwap<'info> {
     pub agent: Signer<'info>,
     pub executor: Signer<'info>,
     #[account(mut,has_one=agent,has_one=executor,has_one=pool,seeds=[b"policy",policy.owner.as_ref(),policy.agent.as_ref()],bump=policy.bump)]
-    pub policy: Account<'info, Policy>,
+    pub policy: Account<'info, PolicyV2>,
     #[account(seeds=[b"pool",pool.admin.as_ref(),pool.output_mint.as_ref()],bump=pool.bump)]
     pub pool: Account<'info, Pool>,
     /// CHECK: validated as classic SPL token account with policy authority and exact quote mint.
@@ -311,7 +357,7 @@ pub struct ExecuteSwap<'info> {
     /// CHECK: validated as pool-owned output token account.
     #[account(mut)]
     pub pool_output: AccountInfo<'info>,
-    /// CHECK: validated as output token account owned by policy recipient.
+    /// CHECK: validated as output token account owned by an allowed recipient.
     #[account(mut)]
     pub recipient: AccountInfo<'info>,
     /// CHECK: fixed canonical SPL Token program.
@@ -325,7 +371,7 @@ pub struct ExecuteSwap<'info> {
 pub struct Recover<'info> {
     pub owner: Signer<'info>,
     #[account(has_one=owner,has_one=pool,seeds=[b"policy",policy.owner.as_ref(),policy.agent.as_ref()],bump=policy.bump)]
-    pub policy: Account<'info, Policy>,
+    pub policy: Account<'info, PolicyV2>,
     pub pool: Account<'info, Pool>,
     /// CHECK: token mint and authority validated in handler.
     #[account(mut)]
@@ -346,13 +392,12 @@ pub struct Pool {
     pub bump: u8,
 }
 #[account]
-pub struct Policy {
+pub struct PolicyV2 {
+    pub version: u8,
     pub owner: Pubkey,
     pub agent: Pubkey,
     pub executor: Pubkey,
-    pub recipient: Pubkey,
     pub pool: Pubkey,
-    pub allowed_program: Pubkey,
     pub max_amount: u64,
     pub total_limit: u64,
     pub spent: u64,
@@ -361,6 +406,12 @@ pub struct Policy {
     pub min_rate: u64,
     pub active: bool,
     pub bump: u8,
+    pub allowed_recipients: Vec<Pubkey>,
+    pub allowed_programs: Vec<Pubkey>,
+}
+impl PolicyV2 {
+    pub const SPACE: usize =
+        8 + 1 + 32 * 4 + 8 * 6 + 2 + 4 + 32 * MAX_RECIPIENTS + 4 + 32 * MAX_PROGRAMS;
 }
 #[event]
 pub struct PolicyCreated {
@@ -417,6 +468,17 @@ pub enum VeyroError {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn allowlists_are_bounded_unique_and_allow_empty() {
+        let keys: Vec<Pubkey> = (0..9).map(|_| Pubkey::new_unique()).collect();
+        assert!(validate_allowlists(&[], &[]).is_ok());
+        assert!(validate_allowlists(&keys[..8], &keys[..4]).is_ok());
+        assert!(validate_allowlists(&keys, &[]).is_err());
+        assert!(validate_allowlists(&[], &keys[..5]).is_err());
+        assert!(validate_allowlists(&[keys[0], keys[0]], &[]).is_err());
+        assert!(validate_allowlists(&[], &[TOKEN, TOKEN]).is_err());
+        assert_eq!(PolicyV2::SPACE, 579);
+    }
     #[test]
     fn limits_and_boundaries() {
         assert!(validate_spend(true, 99, 100, 0, 0, 100, 100, 0, 150).is_ok());

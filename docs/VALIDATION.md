@@ -2,12 +2,12 @@
 
 Verified on 2026-09-13 using Solana test-validator 4.2.1, cargo-build-sbf 4.1.0 / platform-tools 1.54, and the compiled Rust/Anchor program.
 
-- Rust host tests: 2 passed.
-- SDK tests: 9 passed, including independent CLI PDA vectors, signature binding, integer bounds and mainnet rejection through a local proxy.
-- Solana SBF release build: passed; binary is 221,000 bytes.
+- Rust host tests: 3 passed.
+- SDK tests: 11 passed, including allowlist bounds, preflight verdicts, independent CLI PDA vectors, signature binding, integer bounds and mainnet rejection through a local proxy.
+- Solana SBF release build: passed; binary is 225,616 bytes.
 - Local validator: 18 actions finalized and all assertions passed.
 - Program address: `2Z7xH99Z4YvG4U2Ew5PUZtVh8FE1VRhQ1Mo9dFvRvS3Q`.
-- Binary SHA-256: `1745072d7b6a15c62359d33688ee137b38b07f63cf0a1782a74cde03dafed2ad`.
+- Binary SHA-256: `789a7b2883fdefc3dbe5bcdc7efa80b439cc8e0cdefb9bb25ef45db2345353f7`.
 
 The [machine-readable report](verification/localnet.json) contains exact transactions, evaluated policy snapshots, results and before/after balances. These signatures belong to the local test ledger; they are not public testnet explorer receipts.
 

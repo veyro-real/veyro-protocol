@@ -12,7 +12,7 @@ On testnet the executor buys TEST-MEME with TEST-USD from the fixed-price pool. 
 
 One Anchor program implements immutable pool creation, owner policy creation, agent/executor-authorized swaps, owner revocation and owner recovery after revocation. A policy is derived from owner and agent keys and cannot be closed, reset or reactivated. A pool is derived from admin and output-mint keys; its quote/output mints and conversion rate are immutable.
 
-Policy fields bind owner, agent, executor, one approved recipient wallet, one approved pool, an allowed program (canonical SPL Token or the default key meaning deny all), maximum input per transaction, lifetime cumulative input, expiry, minimum output/input rate, active state and replay nonce. The recipient and program sets are intentionally bounded to one entry in this MVP. Amounts use six-decimal integer test-token units. Successful input spending is monotonic; deposit and recovery do not reset it.
+Policy fields bind owner, agent, executor, an approved pool, up to eight approved recipient wallet authorities, up to four approved program IDs, maximum input per transaction, lifetime cumulative input, expiry, minimum output/input rate, active state and replay nonce. Empty allowlists are valid deny-all policies. The current execution route requires the canonical SPL Token program to appear in the program list; listing another program does not create an arbitrary execution route. Amounts use six-decimal integer test-token units. Successful input spending is monotonic; deposit and recovery do not reset it.
 
 The vault is a classic SPL Token account with the policy PDA as token authority. The pool controls its reserves. Execution verifies token-program identity, account ownership, mints, authority, initialization state and absence of delegate/native/close-authority options. Token-2022 is unsupported. Fixed CPI instructions move input from vault to pool and output from pool to the approved recipient. The transaction is restricted to a single top-level Veyro instruction; foreign wrappers fail introspection. Spend and nonce update atomically with both transfers.
 
@@ -20,14 +20,14 @@ The owner-defined `min_rate` protects output even if the compromised agent submi
 
 ## Off-chain
 
-`@veyro/sdk` builds exactly this limited set of transactions and handles native RPC, Ed25519 signatures and Anchor field encoding. `@veyro/core` parses a separate numeric budget and ranks candidates deterministically. UI previews are not authoritative authorization.
+`@veyro/sdk` builds exactly this limited set of transactions, handles native RPC, Ed25519 signatures and Anchor field encoding, and exposes `evaluateTransaction` for a fail-closed ALLOW/DENY preflight that never broadcasts. `@veyro/core` parses a separate numeric budget and ranks candidates deterministically. On-chain execution remains authoritative.
 
 `veyro-live` is one Next.js service, one SQLite audit store and a phone-friendly interface. Testnet mode uses disposable operator-owned demo keys; it does not claim that the phone user has a self-custodied production wallet. Operator and agent tool credentials have different privileges. A future wallet-based owner flow must be implemented before real funds.
 
 ## Acceptance
 
 - An approved swap finalizes with vault −input, pool +input/−output, approved recipient +output, spent +input and nonce +1.
-- Over per-transaction or cumulative limits, wrong recipient, wrong program, expired or revoked policy, stale nonce, wrong signer, wrong accounts and extra instructions fail without token/counter changes.
+- Over per-transaction or cumulative limits, a recipient authority outside the bounded list, a missing required program, expired or revoked policy, stale nonce, wrong signer, wrong accounts and extra instructions fail without token/counter changes.
 - A policy-approved simulation can still fail after revocation or a competing spend; receipts preserve the distinction.
 - Every admitted service request gets durable intake and a decision or explicit pending/error status. Signed bytes are saved before sending. Unknown settlement is never retried with a new nonce automatically.
 - X uses official read-only API calls with bounded results, persistent daily request counts, caching and no automatic fallback that pretends to be live data.

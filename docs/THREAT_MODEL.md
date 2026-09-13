@@ -4,7 +4,7 @@ Assume the agent, prompts and research posts are hostile. Trust the owner to cho
 
 | Threat | Control | Residual risk |
 | --- | --- | --- |
-| Stolen agent key / prompt injection | On-chain budget, fixed pool/program, recipient, expiry, minimum rate and nonce | An attacker can spend the full authorized budget on permitted actions |
+| Stolen agent key / prompt injection | On-chain budget, fixed pool, bounded recipient/program allowlists, expiry, minimum rate and nonce | An attacker can spend the full authorized budget on permitted actions |
 | Direct vault drain | PDA token authority; no exposed arbitrary signing or CPI | Program/upgrade compromise defeats this |
 | Race / replay | Shared writable policy, checked sums and atomic nonce increment | Simulated ALLOW is provisional |
 | Revocation race | Active checked at execution; owner-only revoke | Earlier chain-ordered transfers may succeed |

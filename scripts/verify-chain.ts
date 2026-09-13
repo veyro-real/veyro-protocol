@@ -17,7 +17,7 @@ const pause = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 function check(condition: unknown, code: string): asserts condition { if (!condition) throw Error(code); }
 
 type Deployment = SwapAccounts & {
-  programId: string; owner: string; attacker: string; ownerQuote: string;
+  programId: string; owner: string; attackerOwner: string; attacker: string; ownerQuote: string;
   quoteMint: string; outputMint: string; rpcUrl: string;
 };
 type Snapshot = { policyAddress: string; vaultAddress: string; slot: number; policy: Policy; balances: Record<string, bigint>; policyBytes: string };
@@ -137,8 +137,8 @@ async function run() {
   check(initial.policy.spent === 0n && initial.policy.nonce === 0n, 'FIXTURE_ALREADY_USED_USE_A_FRESH_BOOTSTRAP_FIXTURE');
   check(initial.policy.expiresAt > BigInt(Math.floor(Date.now() / 1000) + 600), 'FIXTURE_EXPIRY_TOO_CLOSE_USE_A_FRESH_BOOTSTRAP_FIXTURE');
   check(initial.policy.maxAmount === 100n * UNIT && initial.policy.totalLimit === 150n * UNIT, 'FIXTURE_LIMITS_MUST_BE_100_AND_150');
-  check(initial.policy.minRate === 990n && initial.policy.allowedProgram === TOKEN, 'FIXTURE_ROUTE_OR_MIN_RATE_MISMATCH');
-  check(initial.policy.owner === owner.publicKey && initial.policy.agent === agent.publicKey && initial.policy.executor === executor.publicKey && initial.policy.recipient === owner.publicKey && initial.policy.pool === cfg.pool, 'FIXTURE_POLICY_ADDRESSES_MISMATCH');
+  check(initial.policy.minRate === 990n && initial.policy.allowedPrograms.length === 1 && initial.policy.allowedPrograms[0] === TOKEN, 'FIXTURE_ROUTE_OR_MIN_RATE_MISMATCH');
+  check(initial.policy.owner === owner.publicKey && initial.policy.agent === agent.publicKey && initial.policy.executor === executor.publicKey && initial.policy.allowedRecipients.length === 1 && initial.policy.allowedRecipients[0] === owner.publicKey && initial.policy.pool === cfg.pool, 'FIXTURE_POLICY_ADDRESSES_MISMATCH');
   check(initial.balances.vault === 150n * UNIT && initial.balances.poolOutput >= 150n * UNIT * RATE, 'FIXTURE_BALANCES_INSUFFICIENT_OR_NOT_FRESH');
 
   async function swap(scenario: string, amount: bigint, options: {
@@ -195,20 +195,20 @@ async function run() {
   await swap('Pool cannot satisfy requested minimum output', UNIT, { minOutput: RATE * UNIT + 1n, expected: error(6009, 'SlippageExceeded', 'SLIPPAGE_EXCEEDED') });
   await swap('Exact cumulative limit succeeds', 90n * UNIT);
 
-  async function supplementalPolicy(label: string, allowedProgram: string, expiresAt: bigint) {
+  async function supplementalPolicy(label: string, allowedPrograms: string[], expiresAt: bigint) {
     const testAgent = generateKey(), testVault = generateKey();
     const policy = policyAddress(owner.publicKey, testAgent.publicKey, cfg.programId);
     const before = await snapshot();
-    const requestedAction = { type: 'create_policy_and_fund_test_vault', policy, agent: testAgent.publicKey, vault: testVault.publicKey, allowedProgram, expiresAt, amountBaseUnits: 2n * UNIT };
+    const requestedAction = { type: 'create_policy_and_fund_test_vault', policy, agent: testAgent.publicKey, vault: testVault.publicKey, allowedRecipients: [owner.publicKey], allowedPrograms, expiresAt, amountBaseUnits: 2n * UNIT };
     const attempt: Attempt = {
       id: report.attempts.length + 1, scenario: label, timestamp: now(), agent: testAgent.publicKey, actor: owner.publicKey,
-      requestedAction, policyEvaluated: { address: policy, owner: owner.publicKey, executor: executor.publicKey, allowedProgram, expiresAt },
+      requestedAction, policyEvaluated: { address: policy, owner: owner.publicKey, executor: executor.publicKey, allowedRecipients: [owner.publicKey], allowedPrograms, expiresAt },
       result: 'PENDING', reason: 'EVALUATION_PENDING', stateBefore: { policy: null, mainFixture: publicState(before) },
     };
     report.attempts.push(attempt); save();
     const rent = await rpc.call<number>('getMinimumBalanceForRentExemption', [165]);
     const setup = await rpc.transaction(owner, [testVault, outsider], [
-      createPolicyIx({ owner: owner.publicKey, agent: testAgent.publicKey, executor: executor.publicKey, recipient: owner.publicKey, pool: cfg.pool, maxAmount: 100n * UNIT, totalLimit: 150n * UNIT, expiresAt, minRate: 990n, allowedProgram }, cfg.programId),
+      createPolicyIx({ owner: owner.publicKey, agent: testAgent.publicKey, executor: executor.publicKey, allowedRecipients: [owner.publicKey], pool: cfg.pool, maxAmount: 100n * UNIT, totalLimit: 150n * UNIT, expiresAt, minRate: 990n, allowedPrograms }, cfg.programId),
       systemCreate(owner.publicKey, testVault.publicKey, BigInt(rent), 165n, TOKEN),
       initializeToken(testVault.publicKey, cfg.quoteMint, policy),
       mintTo(cfg.quoteMint, testVault.publicKey, outsider.publicKey, 2n * UNIT),
@@ -220,17 +220,17 @@ async function run() {
     const landed = await submit(attempt, setup, false);
     check(!landed.meta.err, 'SUPPLEMENTAL_POLICY_CHAIN_REJECTED');
     const created = await snapshot(policy, testVault.publicKey); attempt.stateAfter = publicState(created); save();
-    check(created.policy.active && created.policy.spent === 0n && created.policy.nonce === 0n && created.policy.allowedProgram === allowedProgram && created.policy.expiresAt === expiresAt, 'SUPPLEMENTAL_POLICY_FIELDS_MISMATCH');
+    check(created.policy.active && created.policy.spent === 0n && created.policy.nonce === 0n && json(created.policy.allowedPrograms) === json(allowedPrograms) && created.policy.expiresAt === expiresAt, 'SUPPLEMENTAL_POLICY_FIELDS_MISMATCH');
     check(created.balances.vault === 2n * UNIT, 'SUPPLEMENTAL_VAULT_FUNDING_MISMATCH');
     unchanged(before, await snapshot());
     attempt.assertionsPassed = true; save();
     console.log('PASS', label, 'ALLOW finalized', setup.signature);
     return { policy, signer: testAgent, vault: testVault.publicKey };
   }
-  const blocked = await supplementalPolicy('Owner creates policy with no allowed programs', SYSTEM, BigInt(Math.floor(Date.now() / 1000) + 600));
+  const blocked = await supplementalPolicy('Owner creates policy with no allowed programs', [], BigInt(Math.floor(Date.now() / 1000) + 600));
   await swap('Policy forbids the SPL Token program', UNIT, { ...blocked, expected: error(6007, 'ProgramNotAllowed', 'PROGRAM_NOT_ALLOWED') });
   const expiry = BigInt(Math.floor(Date.now() / 1000) + 45);
-  const expiring = await supplementalPolicy('Owner creates expiring policy', TOKEN, expiry);
+  const expiring = await supplementalPolicy('Owner creates expiring policy', [TOKEN], expiry);
   // Compare to finalized chain time, rather than trusting the machine clock.
   const expiryDeadline = Date.now() + 120_000;
   while (true) {
