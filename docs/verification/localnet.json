@@ -1,0 +1,2060 @@
+{
+  "schemaVersion": 1,
+  "suite": "Veyro on-chain policy acceptance",
+  "startedAt": "2026-09-13T15:02:40.777Z",
+  "status": "PASSED",
+  "attempts": [
+    {
+      "id": 1,
+      "scenario": "Approved transfer within limits",
+      "timestamp": "2026-09-13T15:02:40.838Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "60000000",
+        "minOutputBaseUnits": "59400000000",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "0"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "0",
+        "expiresAt": "1789398118",
+        "nonce": "0",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "ALLOW",
+      "reason": "POLICY_SATISFIED",
+      "stateBefore": {
+        "slot": 492,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "0",
+          "expiresAt": "1789398118",
+          "nonce": "0",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "150000000",
+          "poolQuote": "0",
+          "poolOutput": "1000000000000",
+          "recipient": "0",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "ALLOW",
+        "reason": "POLICY_SATISFIED",
+        "error": null
+      },
+      "submittedSignature": "8CnYWSns2dfeZYGYwzh8LnjghJvhChiCKjxnzgeUoQEnuJUSFg33FFz6k2SLZ7jAhx8enF2rNZ2QH4YFYqjuMpG",
+      "submittedWithSkipPreflight": false,
+      "finalizedAt": "2026-09-13T15:02:56.867Z",
+      "slot": 524,
+      "chainError": null,
+      "transactionSignature": "8CnYWSns2dfeZYGYwzh8LnjghJvhChiCKjxnzgeUoQEnuJUSFg33FFz6k2SLZ7jAhx8enF2rNZ2QH4YFYqjuMpG",
+      "stateAfter": {
+        "slot": 526,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 2,
+      "scenario": "Over maximum transaction amount by one base unit",
+      "timestamp": "2026-09-13T15:02:56.869Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "100000001",
+        "minOutputBaseUnits": "99000000990",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "1"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "MAX_TRANSACTION_EXCEEDED",
+      "expectedError": {
+        "number": 6005,
+        "code": "MaxTransactionExceeded",
+        "reason": "MAX_TRANSACTION_EXCEEDED"
+      },
+      "stateBefore": {
+        "slot": 526,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "MAX_TRANSACTION_EXCEEDED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6005
+            }
+          ]
+        }
+      },
+      "submittedSignature": "3845fEjHf2uhTz9Ri4DWZswJeFrX8iPygQifRjRFwxrBRmfujRerUqL5ih3yGSii2yCs7eQ7PPndSRZx8ynzqecw",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:03:12.896Z",
+      "slot": 558,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6005
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 560,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 3,
+      "scenario": "Over cumulative limit by one base unit",
+      "timestamp": "2026-09-13T15:03:12.897Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "90000001",
+        "minOutputBaseUnits": "89100000990",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "1"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "CUMULATIVE_LIMIT_EXCEEDED",
+      "expectedError": {
+        "number": 6006,
+        "code": "CumulativeLimitExceeded",
+        "reason": "CUMULATIVE_LIMIT_EXCEEDED"
+      },
+      "stateBefore": {
+        "slot": 560,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "CUMULATIVE_LIMIT_EXCEEDED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6006
+            }
+          ]
+        }
+      },
+      "submittedSignature": "5S64eqekj4dT9S8QnxChQfjwaVw8zoppfknXFn2s7R4DANikyuHuqViBvKV8Li71ZYffUA1RgWYtjiCVjUMt5Rxh",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:03:28.923Z",
+      "slot": 592,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6006
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 593,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 4,
+      "scenario": "Unauthorized recipient",
+      "timestamp": "2026-09-13T15:03:28.926Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "990000000",
+        "recipientTokenAccount": "2FpjBqoaF4g5MR6qU5931irc9NSB5DFVKwVsssUZqAq2",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "1"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "RECIPIENT_NOT_ALLOWED",
+      "expectedError": {
+        "number": 6008,
+        "code": "RecipientNotAllowed",
+        "reason": "RECIPIENT_NOT_ALLOWED"
+      },
+      "stateBefore": {
+        "slot": 593,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "RECIPIENT_NOT_ALLOWED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6008
+            }
+          ]
+        }
+      },
+      "submittedSignature": "17AeeRM6oPi7NmBVipaGUyPqrdBsuGTpbwxLFo42DAzd2V7r95Vi45qAvuAwP5yxFpBXoRup2aeZgtcvLJDeQLR",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:03:43.953Z",
+      "slot": 625,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6008
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 625,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 5,
+      "scenario": "Compromised agent attempts to divert funds",
+      "timestamp": "2026-09-13T15:03:43.956Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "60000000",
+        "minOutputBaseUnits": "59400000000",
+        "recipientTokenAccount": "2FpjBqoaF4g5MR6qU5931irc9NSB5DFVKwVsssUZqAq2",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "1"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "RECIPIENT_NOT_ALLOWED",
+      "expectedError": {
+        "number": 6008,
+        "code": "RecipientNotAllowed",
+        "reason": "RECIPIENT_NOT_ALLOWED"
+      },
+      "stateBefore": {
+        "slot": 625,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "RECIPIENT_NOT_ALLOWED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6008
+            }
+          ]
+        }
+      },
+      "submittedSignature": "8sPbKtHkuTiAyDWwrHfsGVUvLgbcy5Bdz8rzRVigtvrMb2wGfVWGqGA4ng3UWPNgWadjP2p2yVjp4UyF9Ksy1JJ",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:03:58.979Z",
+      "slot": 657,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6008
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 657,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 6,
+      "scenario": "Stale nonce replay",
+      "timestamp": "2026-09-13T15:03:58.981Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "990000000",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "0"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "STALE_NONCE",
+      "expectedError": {
+        "number": 6003,
+        "code": "StaleNonce",
+        "reason": "STALE_NONCE"
+      },
+      "stateBefore": {
+        "slot": 657,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "STALE_NONCE",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6003
+            }
+          ]
+        }
+      },
+      "submittedSignature": "4uMqrrQMJoLoCgBxKRX5HCuVeRUjhgui9g4bm5hedYdGBqhMyvcAtoRuAU4uk1r6jyZ4SHNFdhD3Nt3YhnzLGFfJ",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:04:14.002Z",
+      "slot": 689,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6003
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 689,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 7,
+      "scenario": "Unapproved agent with a valid signature",
+      "timestamp": "2026-09-13T15:04:14.004Z",
+      "agent": "CPC84iLPMRpSAE8nHMAPDf7VVXvhQPdMP4jwpSw76Ek9",
+      "actor": "CPC84iLPMRpSAE8nHMAPDf7VVXvhQPdMP4jwpSw76Ek9",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "990000000",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "1"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "AGENT_NOT_AUTHORIZED",
+      "expectedError": {
+        "number": 2001,
+        "code": "ConstraintHasOne",
+        "reason": "AGENT_NOT_AUTHORIZED"
+      },
+      "stateBefore": {
+        "slot": 689,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "AGENT_NOT_AUTHORIZED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 2001
+            }
+          ]
+        }
+      },
+      "submittedSignature": "4EzQKVWBsiYG1hZk37YgNrdrZYMHCza2zEGYwqUbgaYBEKuYcT4eXfgs9HcP9eDLmqMnPef9uKsmXeQjCqykyYyK",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:04:30.033Z",
+      "slot": 721,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 2001
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 722,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 8,
+      "scenario": "Unapproved executor with a valid signature",
+      "timestamp": "2026-09-13T15:04:30.034Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "990000000",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "CPC84iLPMRpSAE8nHMAPDf7VVXvhQPdMP4jwpSw76Ek9",
+        "nonce": "1"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "EXECUTOR_NOT_AUTHORIZED",
+      "expectedError": {
+        "number": 2001,
+        "code": "ConstraintHasOne",
+        "reason": "EXECUTOR_NOT_AUTHORIZED"
+      },
+      "stateBefore": {
+        "slot": 722,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "EXECUTOR_NOT_AUTHORIZED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 2001
+            }
+          ]
+        }
+      },
+      "submittedSignature": "52FjqxMUfRf4wpv6k75fTzZyiUyiQkSMykKH9oErSLEsfx79k7uhWK8r63PqUe7nhoU9MxW9J9KjmmxFR7p5zvss",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:04:45.058Z",
+      "slot": 754,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 2001
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 754,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 9,
+      "scenario": "Agent attempts to weaken minimum output",
+      "timestamp": "2026-09-13T15:04:45.060Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "989999999",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "1"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "SLIPPAGE_EXCEEDED",
+      "expectedError": {
+        "number": 6009,
+        "code": "SlippageExceeded",
+        "reason": "SLIPPAGE_EXCEEDED"
+      },
+      "stateBefore": {
+        "slot": 754,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "SLIPPAGE_EXCEEDED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6009
+            }
+          ]
+        }
+      },
+      "submittedSignature": "3swixGc3UDH329GN635vX2KXmZG73ZZ7aX94uHfRLXKhAvE9u4qdJZsRNY26oLY6XwZzB7boh7LTL6Wg7T7axxwa",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:05:01.083Z",
+      "slot": 786,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6009
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 787,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 10,
+      "scenario": "Pool cannot satisfy requested minimum output",
+      "timestamp": "2026-09-13T15:05:01.085Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "1000000001",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "1"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "SLIPPAGE_EXCEEDED",
+      "expectedError": {
+        "number": 6009,
+        "code": "SlippageExceeded",
+        "reason": "SLIPPAGE_EXCEEDED"
+      },
+      "stateBefore": {
+        "slot": 787,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "SLIPPAGE_EXCEEDED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6009
+            }
+          ]
+        }
+      },
+      "submittedSignature": "4EoamGqPavixtwtw23bq9DJf7CDRAJD1D92Q38N5A4Hyp7nSqQSGubdvRQFNZwnMqXFjeJqZxUY69kc52AyW5xR",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:05:16.109Z",
+      "slot": 819,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6009
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 819,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 11,
+      "scenario": "Exact cumulative limit succeeds",
+      "timestamp": "2026-09-13T15:05:16.112Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "90000000",
+        "minOutputBaseUnits": "89100000000",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "1"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "60000000",
+        "expiresAt": "1789398118",
+        "nonce": "1",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "ALLOW",
+      "reason": "POLICY_SATISFIED",
+      "stateBefore": {
+        "slot": 819,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "60000000",
+          "expiresAt": "1789398118",
+          "nonce": "1",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "90000000",
+          "poolQuote": "60000000",
+          "poolOutput": "940000000000",
+          "recipient": "60000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "ALLOW",
+        "reason": "POLICY_SATISFIED",
+        "error": null
+      },
+      "submittedSignature": "5CP2cBHNfRU2JsQAG9vKWG7MtgnHw4FZWpf5H1VRbFwefjXGj2SF2g54LR2NDBGb6jHDmNSeP6TCGWsGcJ7FRcNw",
+      "submittedWithSkipPreflight": false,
+      "finalizedAt": "2026-09-13T15:05:31.135Z",
+      "slot": 851,
+      "chainError": null,
+      "transactionSignature": "5CP2cBHNfRU2JsQAG9vKWG7MtgnHw4FZWpf5H1VRbFwefjXGj2SF2g54LR2NDBGb6jHDmNSeP6TCGWsGcJ7FRcNw",
+      "stateAfter": {
+        "slot": 851,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "150000000",
+          "expiresAt": "1789398118",
+          "nonce": "2",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "0",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 12,
+      "scenario": "Owner creates policy with no allowed programs",
+      "timestamp": "2026-09-13T15:05:31.139Z",
+      "agent": "6zxCZZNBjaaj48LoQeXukUNkzCt9y4xdXmST6rcAzvAc",
+      "actor": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+      "requestedAction": {
+        "type": "create_policy_and_fund_test_vault",
+        "policy": "Bg1NvNSwnqVhK1GYf68eD1KeiuJgeN2n7cpmZWEk7WV5",
+        "agent": "6zxCZZNBjaaj48LoQeXukUNkzCt9y4xdXmST6rcAzvAc",
+        "vault": "CCsuLUNxXtNfNCU9HREqJb34UStz71fve2nie8P1zg9R",
+        "allowedProgram": "11111111111111111111111111111111",
+        "expiresAt": "1789312531",
+        "amountBaseUnits": "2000000"
+      },
+      "policyEvaluated": {
+        "address": "Bg1NvNSwnqVhK1GYf68eD1KeiuJgeN2n7cpmZWEk7WV5",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "allowedProgram": "11111111111111111111111111111111",
+        "expiresAt": "1789312531"
+      },
+      "result": "ALLOW",
+      "reason": "OWNER_AUTHORIZED",
+      "stateBefore": {
+        "policy": null,
+        "mainFixture": {
+          "slot": 851,
+          "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+          "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+          "policy": {
+            "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+            "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+            "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+            "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+            "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+            "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "maxAmount": "100000000",
+            "totalLimit": "150000000",
+            "spent": "150000000",
+            "expiresAt": "1789398118",
+            "nonce": "2",
+            "minRate": "990",
+            "active": true
+          },
+          "balances": {
+            "vault": "0",
+            "poolQuote": "150000000",
+            "poolOutput": "850000000000",
+            "recipient": "150000000000",
+            "attacker": "0",
+            "ownerQuote": "0"
+          }
+        }
+      },
+      "simulation": {
+        "result": "ALLOW",
+        "reason": "OWNER_AUTHORIZED",
+        "error": null
+      },
+      "submittedSignature": "5J771YLPZye6AX5wG6WYfQFUdzPJLrDCRMGSAVRLhFCXnNY1UVJhEszw5TZFy6zhamVaSTYroPZGtqiFbDrGxgwb",
+      "submittedWithSkipPreflight": false,
+      "finalizedAt": "2026-09-13T15:05:46.161Z",
+      "slot": 883,
+      "chainError": null,
+      "transactionSignature": "5J771YLPZye6AX5wG6WYfQFUdzPJLrDCRMGSAVRLhFCXnNY1UVJhEszw5TZFy6zhamVaSTYroPZGtqiFbDrGxgwb",
+      "stateAfter": {
+        "slot": 883,
+        "policyAddress": "Bg1NvNSwnqVhK1GYf68eD1KeiuJgeN2n7cpmZWEk7WV5",
+        "vaultAddress": "CCsuLUNxXtNfNCU9HREqJb34UStz71fve2nie8P1zg9R",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6zxCZZNBjaaj48LoQeXukUNkzCt9y4xdXmST6rcAzvAc",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "11111111111111111111111111111111",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "0",
+          "expiresAt": "1789312531",
+          "nonce": "0",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "2000000",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 13,
+      "scenario": "Policy forbids the SPL Token program",
+      "timestamp": "2026-09-13T15:05:46.164Z",
+      "agent": "6zxCZZNBjaaj48LoQeXukUNkzCt9y4xdXmST6rcAzvAc",
+      "actor": "6zxCZZNBjaaj48LoQeXukUNkzCt9y4xdXmST6rcAzvAc",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "990000000",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "0"
+      },
+      "policyEvaluated": {
+        "address": "Bg1NvNSwnqVhK1GYf68eD1KeiuJgeN2n7cpmZWEk7WV5",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6zxCZZNBjaaj48LoQeXukUNkzCt9y4xdXmST6rcAzvAc",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "11111111111111111111111111111111",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "0",
+        "expiresAt": "1789312531",
+        "nonce": "0",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "PROGRAM_NOT_ALLOWED",
+      "expectedError": {
+        "number": 6007,
+        "code": "ProgramNotAllowed",
+        "reason": "PROGRAM_NOT_ALLOWED"
+      },
+      "stateBefore": {
+        "slot": 883,
+        "policyAddress": "Bg1NvNSwnqVhK1GYf68eD1KeiuJgeN2n7cpmZWEk7WV5",
+        "vaultAddress": "CCsuLUNxXtNfNCU9HREqJb34UStz71fve2nie8P1zg9R",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6zxCZZNBjaaj48LoQeXukUNkzCt9y4xdXmST6rcAzvAc",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "11111111111111111111111111111111",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "0",
+          "expiresAt": "1789312531",
+          "nonce": "0",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "2000000",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "PROGRAM_NOT_ALLOWED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6007
+            }
+          ]
+        }
+      },
+      "submittedSignature": "8RziLCtHTr4y3RcTRzomGEAFFyWADZco6eXaC1vXkeuL6zbiAWK2UkNRLMxJfBVbYC44y2XjNgUYReC3rNxubUw",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:06:02.191Z",
+      "slot": 915,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6007
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 916,
+        "policyAddress": "Bg1NvNSwnqVhK1GYf68eD1KeiuJgeN2n7cpmZWEk7WV5",
+        "vaultAddress": "CCsuLUNxXtNfNCU9HREqJb34UStz71fve2nie8P1zg9R",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6zxCZZNBjaaj48LoQeXukUNkzCt9y4xdXmST6rcAzvAc",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "11111111111111111111111111111111",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "0",
+          "expiresAt": "1789312531",
+          "nonce": "0",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "2000000",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 14,
+      "scenario": "Owner creates expiring policy",
+      "timestamp": "2026-09-13T15:06:02.194Z",
+      "agent": "3EQV1cEzdnnaSzCsT6FfRwk6UwRUGiN2r6cBEUEqYeMt",
+      "actor": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+      "requestedAction": {
+        "type": "create_policy_and_fund_test_vault",
+        "policy": "5ET4GGpCMPksAnb4fSgt8ofvwvAuqtAm3XL4YfMavL7w",
+        "agent": "3EQV1cEzdnnaSzCsT6FfRwk6UwRUGiN2r6cBEUEqYeMt",
+        "vault": "8vMNRSN7p6MCr7h9tadbMvwBSQaToeQ7yjzD7ABdfGb",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "expiresAt": "1789312007",
+        "amountBaseUnits": "2000000"
+      },
+      "policyEvaluated": {
+        "address": "5ET4GGpCMPksAnb4fSgt8ofvwvAuqtAm3XL4YfMavL7w",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "expiresAt": "1789312007"
+      },
+      "result": "ALLOW",
+      "reason": "OWNER_AUTHORIZED",
+      "stateBefore": {
+        "policy": null,
+        "mainFixture": {
+          "slot": 916,
+          "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+          "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+          "policy": {
+            "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+            "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+            "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+            "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+            "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+            "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "maxAmount": "100000000",
+            "totalLimit": "150000000",
+            "spent": "150000000",
+            "expiresAt": "1789398118",
+            "nonce": "2",
+            "minRate": "990",
+            "active": true
+          },
+          "balances": {
+            "vault": "0",
+            "poolQuote": "150000000",
+            "poolOutput": "850000000000",
+            "recipient": "150000000000",
+            "attacker": "0",
+            "ownerQuote": "0"
+          }
+        }
+      },
+      "simulation": {
+        "result": "ALLOW",
+        "reason": "OWNER_AUTHORIZED",
+        "error": null
+      },
+      "submittedSignature": "58iGzJHGFPgyG7UT8hg6n3drEE6GRRcuGwfieEPubG1V2xL8xdQFYvVa8Xeka8oUdMkicjcXLhCm66RoEU9FYDsC",
+      "submittedWithSkipPreflight": false,
+      "finalizedAt": "2026-09-13T15:06:17.221Z",
+      "slot": 948,
+      "chainError": null,
+      "transactionSignature": "58iGzJHGFPgyG7UT8hg6n3drEE6GRRcuGwfieEPubG1V2xL8xdQFYvVa8Xeka8oUdMkicjcXLhCm66RoEU9FYDsC",
+      "stateAfter": {
+        "slot": 948,
+        "policyAddress": "5ET4GGpCMPksAnb4fSgt8ofvwvAuqtAm3XL4YfMavL7w",
+        "vaultAddress": "8vMNRSN7p6MCr7h9tadbMvwBSQaToeQ7yjzD7ABdfGb",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "3EQV1cEzdnnaSzCsT6FfRwk6UwRUGiN2r6cBEUEqYeMt",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "0",
+          "expiresAt": "1789312007",
+          "nonce": "0",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "2000000",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 15,
+      "scenario": "Expired agent policy cannot spend",
+      "timestamp": "2026-09-13T15:07:03.302Z",
+      "agent": "3EQV1cEzdnnaSzCsT6FfRwk6UwRUGiN2r6cBEUEqYeMt",
+      "actor": "3EQV1cEzdnnaSzCsT6FfRwk6UwRUGiN2r6cBEUEqYeMt",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "990000000",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "0"
+      },
+      "policyEvaluated": {
+        "address": "5ET4GGpCMPksAnb4fSgt8ofvwvAuqtAm3XL4YfMavL7w",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "3EQV1cEzdnnaSzCsT6FfRwk6UwRUGiN2r6cBEUEqYeMt",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "0",
+        "expiresAt": "1789312007",
+        "nonce": "0",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "DENY",
+      "reason": "EXPIRED",
+      "expectedError": {
+        "number": 6002,
+        "code": "Expired",
+        "reason": "EXPIRED"
+      },
+      "stateBefore": {
+        "slot": 1045,
+        "policyAddress": "5ET4GGpCMPksAnb4fSgt8ofvwvAuqtAm3XL4YfMavL7w",
+        "vaultAddress": "8vMNRSN7p6MCr7h9tadbMvwBSQaToeQ7yjzD7ABdfGb",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "3EQV1cEzdnnaSzCsT6FfRwk6UwRUGiN2r6cBEUEqYeMt",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "0",
+          "expiresAt": "1789312007",
+          "nonce": "0",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "2000000",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "EXPIRED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6002
+            }
+          ]
+        }
+      },
+      "submittedSignature": "4rpz6zgbFxNUpN9CBA9hu6C6qX8JebP1f2Ac4Q6btzjodpeds7ZCXRasHvsBSR8tnkbPgqadGEKZ9viV3seppYSV",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:07:19.323Z",
+      "slot": 1077,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6002
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 1078,
+        "policyAddress": "5ET4GGpCMPksAnb4fSgt8ofvwvAuqtAm3XL4YfMavL7w",
+        "vaultAddress": "8vMNRSN7p6MCr7h9tadbMvwBSQaToeQ7yjzD7ABdfGb",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "3EQV1cEzdnnaSzCsT6FfRwk6UwRUGiN2r6cBEUEqYeMt",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "0",
+          "expiresAt": "1789312007",
+          "nonce": "0",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "2000000",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 16,
+      "scenario": "Owner revokes agent",
+      "timestamp": "2026-09-13T15:07:19.326Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+      "requestedAction": {
+        "type": "revoke",
+        "policy": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "150000000",
+        "expiresAt": "1789398118",
+        "nonce": "2",
+        "minRate": "990",
+        "active": true
+      },
+      "result": "ALLOW",
+      "reason": "OWNER_AUTHORIZED",
+      "stateBefore": {
+        "slot": 1078,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "150000000",
+          "expiresAt": "1789398118",
+          "nonce": "2",
+          "minRate": "990",
+          "active": true
+        },
+        "balances": {
+          "vault": "0",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "ALLOW",
+        "reason": "OWNER_AUTHORIZED",
+        "error": null
+      },
+      "submittedSignature": "2D1p4kDs2AekyTPxZDbp439LhYH7hfTdXWhMWrU8qrASNsnUE6smQZAueYJ6KnFwS12Bu7igZTCQNj42bHdms6QC",
+      "submittedWithSkipPreflight": false,
+      "finalizedAt": "2026-09-13T15:07:34.350Z",
+      "slot": 1110,
+      "chainError": null,
+      "transactionSignature": "2D1p4kDs2AekyTPxZDbp439LhYH7hfTdXWhMWrU8qrASNsnUE6smQZAueYJ6KnFwS12Bu7igZTCQNj42bHdms6QC",
+      "stateAfter": {
+        "slot": 1110,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "150000000",
+          "expiresAt": "1789398118",
+          "nonce": "2",
+          "minRate": "990",
+          "active": false
+        },
+        "balances": {
+          "vault": "0",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 17,
+      "scenario": "Revoked agent cannot spend",
+      "timestamp": "2026-09-13T15:07:34.352Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "990000000",
+        "recipientTokenAccount": "6vbEy7hUy8NyVLmKWWbcFXuxNB5GKkU9sXVh9DChN3Sx",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "2"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "150000000",
+        "expiresAt": "1789398118",
+        "nonce": "2",
+        "minRate": "990",
+        "active": false
+      },
+      "result": "DENY",
+      "reason": "REVOKED",
+      "expectedError": {
+        "number": 6001,
+        "code": "Revoked",
+        "reason": "REVOKED"
+      },
+      "stateBefore": {
+        "slot": 1110,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "150000000",
+          "expiresAt": "1789398118",
+          "nonce": "2",
+          "minRate": "990",
+          "active": false
+        },
+        "balances": {
+          "vault": "0",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "REVOKED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6001
+            }
+          ]
+        }
+      },
+      "submittedSignature": "3AQS21nZJzRC6nUvLZiJBJTbEq72822qtrXHSF2q6c1m4iSRzBomu2VzcbEPNiQsba2RXbwT7MmUhHUDqrwaQhbE",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:07:50.378Z",
+      "slot": 1142,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6001
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 1143,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "150000000",
+          "expiresAt": "1789398118",
+          "nonce": "2",
+          "minRate": "990",
+          "active": false
+        },
+        "balances": {
+          "vault": "0",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    },
+    {
+      "id": 18,
+      "scenario": "Revoked agent cannot divert funds",
+      "timestamp": "2026-09-13T15:07:50.380Z",
+      "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "actor": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+      "requestedAction": {
+        "type": "execute_swap",
+        "amountBaseUnits": "1000000",
+        "minOutputBaseUnits": "990000000",
+        "recipientTokenAccount": "2FpjBqoaF4g5MR6qU5931irc9NSB5DFVKwVsssUZqAq2",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "nonce": "2"
+      },
+      "policyEvaluated": {
+        "address": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+        "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+        "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+        "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+        "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "maxAmount": "100000000",
+        "totalLimit": "150000000",
+        "spent": "150000000",
+        "expiresAt": "1789398118",
+        "nonce": "2",
+        "minRate": "990",
+        "active": false
+      },
+      "result": "DENY",
+      "reason": "REVOKED",
+      "expectedError": {
+        "number": 6001,
+        "code": "Revoked",
+        "reason": "REVOKED"
+      },
+      "stateBefore": {
+        "slot": 1143,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "150000000",
+          "expiresAt": "1789398118",
+          "nonce": "2",
+          "minRate": "990",
+          "active": false
+        },
+        "balances": {
+          "vault": "0",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "simulation": {
+        "result": "DENY",
+        "reason": "REVOKED",
+        "error": {
+          "InstructionError": [
+            0,
+            {
+              "Custom": 6001
+            }
+          ]
+        }
+      },
+      "submittedSignature": "8K4JTthk4qmd16WRNSGcRCyLKSGC3Ehgg74gAbBxP6FGSUDkzbtNRi94aTdKHchDx79JjJx8g3J7GqhPiM18ULK",
+      "submittedWithSkipPreflight": true,
+      "finalizedAt": "2026-09-13T15:08:06.412Z",
+      "slot": 1175,
+      "chainError": {
+        "InstructionError": [
+          0,
+          {
+            "Custom": 6001
+          }
+        ]
+      },
+      "stateAfter": {
+        "slot": 1176,
+        "policyAddress": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+        "vaultAddress": "4AarC1qqEC1DR86A15FGpHHF8JpWNp1X5n8Wn98gg7Gc",
+        "policy": {
+          "owner": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "agent": "6uGFfQ8jH1Kpe5ssTABnKkzLeTrZFkLGegNdyM9KJv8e",
+          "executor": "4oZkfBDY4fUHYDWx5p6AjJJjH3qAEAqpkpCCd5md8f2Y",
+          "recipient": "GZvaqiWmNZ8WAnWRbjh7gm6ro81G26rVu7WuCH7fs5xN",
+          "pool": "EuNCCABv7t8hjoEZrtkwvULNUggqKFrH34veJCEakWbu",
+          "allowedProgram": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "maxAmount": "100000000",
+          "totalLimit": "150000000",
+          "spent": "150000000",
+          "expiresAt": "1789398118",
+          "nonce": "2",
+          "minRate": "990",
+          "active": false
+        },
+        "balances": {
+          "vault": "0",
+          "poolQuote": "150000000",
+          "poolOutput": "850000000000",
+          "recipient": "150000000000",
+          "attacker": "0",
+          "ownerQuote": "0"
+        }
+      },
+      "assertionsPassed": true
+    }
+  ],
+  "cluster": "localnet",
+  "genesisHash": "RNGqwLBZY5EHm1TWeAxaYVgLbcXuYbNPuC4dHTk2B5t",
+  "programId": "2Z7xH99Z4YvG4U2Ew5PUZtVh8FE1VRhQ1Mo9dFvRvS3Q",
+  "policy": "7W1LvJ6mft3b84d1R9AVZvi6ZtJr26hC15NRJD54bb6E",
+  "assets": {
+    "quoteMint": "D8646JB1fR81HhEwFXWKbTToQBBsrVhR76Xoz2WZfQ6b",
+    "outputMint": "HwPZw6TDRHmi8vXC7XMiPC5wfQWKH2gXwuuG4EtqNrhs",
+    "quoteDecimals": 6,
+    "outputDecimals": 6,
+    "fixedPoolRate": "1000",
+    "officialUsdc": false,
+    "realFunds": false
+  },
+  "finishedAt": "2026-09-13T15:08:06.414Z"
+}

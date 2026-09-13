@@ -1,6 +1,6 @@
 # Architecture
 
-The current scope replaces the original transfer-only proposal with a narrow test-token swap demonstration. Veyro is independent and uses only its own project source and ordinary platform dependencies.
+Veyro demonstrates a narrow test-token swap governed by owner-defined authorization. It uses its own project source and ordinary platform dependencies.
 
 ## Flow
 
@@ -37,3 +37,9 @@ The owner-defined `min_rate` protects output even if the compromised agent submi
 ## Later mainnet gate
 
 Add a narrowly reviewed production DEX adapter; validate exact quote/output mints and balance deltas; implement self-custodied owner authorization, minimum-output and expiry semantics for changing prices; replace test-token issuance and demo custody; review the protocol and key management; rehearse failure cases. A new owner authorization is needed for the actual real-money pilot. The testnet build is not moved to mainnet by changing an endpoint.
+
+## Verification and repeatability
+
+The repository includes a chain acceptance runner and an isolated local-validator launcher. Each report includes the proposed action, actor/agent, timestamp, complete evaluated policy, simulation decision, finalized result, exact errors, before/after token balances and public transaction signatures. A signature for a failed submitted transaction is kept separately from a successful execution signature. These reports verify the test run; hosted service audit durability remains the responsibility of Veyro Live's SQLite request journal.
+
+A checked-in Cargo lockfile fixes the dependency graph used for compilation. The narrow SDK also rejects the full mainnet genesis hash when a mainnet endpoint is proxied through localhost. Integer encoders reject overflow rather than silently wrapping policy amounts or expiry times. Bootstrap never refreshes an existing policy's spend allowance.

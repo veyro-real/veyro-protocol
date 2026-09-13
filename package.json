@@ -10,7 +10,10 @@
     "build": "tsc -b packages/core packages/sdk",
     "test": "node --import tsx --test tests/*.test.ts",
     "bootstrap": "node --import tsx scripts/bootstrap.ts",
-    "demo": "node --import tsx scripts/demo.ts"
+    "demo": "node --import tsx scripts/demo.ts",
+    "verify:chain": "node --import tsx scripts/verify-chain.ts",
+    "build:onchain": "cargo build-sbf --manifest-path programs/veyro/Cargo.toml",
+    "test:localnet": "node --import tsx scripts/test-localnet.ts"
   },
   "devDependencies": {
     "typescript": "5.9.3",

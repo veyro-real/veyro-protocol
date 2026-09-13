@@ -13,8 +13,8 @@ export const concat = (...arrays: Uint8Array[]) => Uint8Array.from(arrays.flatMa
 export const utf8 = (s: string) => new TextEncoder().encode(s);
 export function address(s: string): Uint8Array { const a = bs58.decode(s); if (a.length !== 32) throw Error('INVALID_ADDRESS'); return a; }
 export function u64(value: bigint): Uint8Array { if (value < 0n || value > 18446744073709551615n) throw Error('INVALID_U64'); const a = new Uint8Array(8); new DataView(a.buffer).setBigUint64(0,value,true); return a; }
-export function i64(value: bigint): Uint8Array { const a = new Uint8Array(8);new DataView(a.buffer).setBigInt64(0,value,true);return a; }
-export function u32(value: number): Uint8Array {const a=new Uint8Array(4);new DataView(a.buffer).setUint32(0,value,true);return a;}
+export function i64(value: bigint): Uint8Array { if(value < -(2n**63n) || value > 2n**63n-1n)throw Error('INVALID_I64');const a = new Uint8Array(8);new DataView(a.buffer).setBigInt64(0,value,true);return a; }
+export function u32(value: number): Uint8Array {if(!Number.isInteger(value) || value<0 || value>0xffffffff)throw Error('INVALID_U32');const a=new Uint8Array(4);new DataView(a.buffer).setUint32(0,value,true);return a;}
 export function keyFromSecret(secret: Uint8Array): Key { if(secret.length!==32 && secret.length!==64)throw Error('INVALID_SECRET');const seed=secret.slice(0,32);const publicKey=bs58.encode(ed25519.getPublicKey(seed));if(secret.length===64 && publicKey!==bs58.encode(secret.slice(32)))throw Error('KEY_MISMATCH');return {publicKey,secret:seed}; }
 export function generateKey(): Key { return keyFromSecret(ed25519.utils.randomPrivateKey()); }
 export function exportKey(key: Key): number[] {return [...key.secret,...address(key.publicKey)];}
@@ -44,11 +44,11 @@ export function signTransaction(compiled:ReturnType<typeof compile>, keys:Key[])
 export class Rpc {
  constructor(public endpoint:string) { const u=new URL(endpoint);if(!['https:','http:'].includes(u.protocol))throw Error('INVALID_RPC'); }
  async call<T=any>(method:string,params:unknown[]=[]):Promise<T>{const res=await fetch(this.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method,params}),signal:AbortSignal.timeout(20000)});if(!res.ok)throw Error('RPC_HTTP_'+res.status);const json=await res.json();if(json.error)throw Error(JSON.stringify(json.error));return json.result as T;}
- async assertTestCluster(){const hash=await this.call<string>('getGenesisHash');if(hash==='5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp')throw Error('MAINNET_DISABLED');const host=new URL(this.endpoint).hostname;if(hash!=='4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY' && !['127.0.0.1','localhost','::1'].includes(host))throw Error('EXPECTED_SOLANA_TESTNET');return hash;}
+ async assertTestCluster(){const hash=await this.call<string>('getGenesisHash');if(hash==='5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d')throw Error('MAINNET_DISABLED');const host=new URL(this.endpoint).hostname;if(hash!=='4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY' && !['127.0.0.1','localhost','[::1]'].includes(host))throw Error('EXPECTED_SOLANA_TESTNET');return hash;}
  async account(key:string){const value=(await this.call('getAccountInfo',[key,{encoding:'base64',commitment:'confirmed'}])).value;if(!value)return null;return {owner:value.owner,data:Uint8Array.from(Buffer.from(value.data[0],'base64')),lamports:value.lamports};}
  async transaction(payer:Key,keys:Key[],ix:Instruction[]){await this.assertTestCluster();const {blockhash,lastValidBlockHeight}=(await this.call('getLatestBlockhash',[{commitment:'confirmed'}])).value;return {...signTransaction(compile(payer.publicKey,blockhash,ix),[payer,...keys]),lastValidBlockHeight};}
  async simulate(bytes:Uint8Array){return this.call('simulateTransaction',[Buffer.from(bytes).toString('base64'),{encoding:'base64',sigVerify:true,commitment:'confirmed'}]);}
- async send(bytes:Uint8Array){return this.call<string>('sendTransaction',[Buffer.from(bytes).toString('base64'),{encoding:'base64',skipPreflight:false,preflightCommitment:'confirmed'}]);}
+ async send(bytes:Uint8Array){await this.assertTestCluster();return this.call<string>('sendTransaction',[Buffer.from(bytes).toString('base64'),{encoding:'base64',skipPreflight:false,preflightCommitment:'confirmed'}]);}
  async confirm(signature:string,timeout=60000){const until=Date.now()+timeout;while(Date.now()<until){const s=(await this.call('getSignatureStatuses',[[signature],{searchTransactionHistory:true}])).value[0];if(s?.err)throw Error('TRANSACTION_FAILED: '+JSON.stringify(s.err));if(s?.confirmationStatus==='finalized')return s;await new Promise(r=>setTimeout(r,1200));}throw Error('CONFIRMATION_UNKNOWN');}
 }
 export type Policy = {owner:string;agent:string;executor:string;recipient:string;pool:string;allowedProgram:string;maxAmount:bigint;totalLimit:bigint;spent:bigint;expiresAt:bigint;nonce:bigint;minRate:bigint;active:boolean};

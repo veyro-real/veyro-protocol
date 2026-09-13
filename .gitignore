@@ -6,3 +6,5 @@ keys/
 *.tsbuildinfo
 packages/*/dist/
 deployment.local.json
+
+outputs/
