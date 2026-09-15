@@ -10,6 +10,8 @@ name = "veyro_mainnet"
 [features]
 default = []
 no-entrypoint = []
+custom-heap = []
+custom-panic = []
 
 [dependencies]
 solana-account-info = "=3.1.1"
