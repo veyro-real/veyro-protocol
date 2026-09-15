@@ -1595,12 +1595,6 @@ dependencies = [
 [[package]]
 name = "veyro-mainnet"
 version = "0.1.0"
-dependencies = [
- "solana-account-info",
- "solana-program-entrypoint",
- "solana-program-error",
- "solana-pubkey 4.3.0",
-]
 
 [[package]]
 name = "wincode"
