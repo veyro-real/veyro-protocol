@@ -1593,6 +1593,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "veyro-mainnet"
+version = "0.1.0"
+dependencies = [
+ "solana-account-info",
+ "solana-program-entrypoint",
+ "solana-program-error",
+ "solana-pubkey 4.3.0",
+]
+
+[[package]]
 name = "wincode"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

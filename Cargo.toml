@@ -1,5 +1,5 @@
 [workspace]
-members = ["programs/veyro"]
+members = ["programs/veyro", "programs/veyro-mainnet"]
 resolver = "2"
 [profile.release]
 opt-level = "z"

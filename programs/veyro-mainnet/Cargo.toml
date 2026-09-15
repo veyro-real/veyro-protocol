@@ -1,0 +1,18 @@
+[package]
+name = "veyro-mainnet"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+name = "veyro_mainnet"
+
+[features]
+default = []
+no-entrypoint = []
+
+[dependencies]
+solana-account-info = "=3.1.1"
+solana-program-entrypoint = "=3.1.1"
+solana-program-error = "=3.0.1"
+solana-pubkey = "=4.3.0"
