@@ -1,0 +1,11 @@
+{
+  "network": "mainnet-beta",
+  "programId": "2Z7xH99Z4YvG4U2Ew5PUZtVh8FE1VRhQ1Mo9dFvRvS3Q",
+  "deploySignature": "5vAZwzkAap1dGa9Sq2JJdnfBrKPXKjkSBWsqdAwjkrZtcS7oUooqYh7QpGC1V9hfdtmJPW7r6fFDjsFW8tnn4mKZ",
+  "deployer": "7QF84Q6g9BhNve3NDp9mhN8bEAKpLmmigdAVkBQQqkqS",
+  "artifact": "target/deploy/veyro_mainnet.so",
+  "artifactBytes": 5232,
+  "solscanProgram": "https://solscan.io/account/2Z7xH99Z4YvG4U2Ew5PUZtVh8FE1VRhQ1Mo9dFvRvS3Q",
+  "solscanDeployTx": "https://solscan.io/tx/5vAZwzkAap1dGa9Sq2JJdnfBrKPXKjkSBWsqdAwjkrZtcS7oUooqYh7QpGC1V9hfdtmJPW7r6fFDjsFW8tnn4mKZ",
+  "deployedAt": "2026-09-15T15:43:10.524Z"
+}
