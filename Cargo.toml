@@ -2,6 +2,8 @@
 members = ["programs/veyro"]
 resolver = "2"
 [profile.release]
+opt-level = "z"
 overflow-checks = true
 lto = "fat"
 codegen-units = 1
+strip = "symbols"
