@@ -98,7 +98,10 @@ pub mod veyro {
             max_amount > 0 && total_limit >= max_amount,
             VeyroError::InvalidPolicy
         );
-        require!(expires_at > Clock::get()?.unix_timestamp, VeyroError::Expired);
+        require!(
+            expires_at > Clock::get()?.unix_timestamp,
+            VeyroError::Expired
+        );
         require!(
             agent != ctx.accounts.owner.key()
                 && executor != agent
@@ -106,7 +109,10 @@ pub mod veyro {
             VeyroError::InvalidPolicy
         );
         validate_allowlists(&allowed_recipients, &allowed_programs)?;
-        require!(!allowed_recipients.is_empty() && !allowed_programs.is_empty(), VeyroError::InvalidPolicy);
+        require!(
+            !allowed_recipients.is_empty() && !allowed_programs.is_empty(),
+            VeyroError::InvalidPolicy
+        );
         validate_mint(&ctx.accounts.quote_mint)?;
         let policy = &mut ctx.accounts.policy;
         policy.version = LIVE_POLICY_VERSION;
@@ -123,13 +129,23 @@ pub mod veyro {
         policy.bump = ctx.bumps.policy;
         policy.allowed_recipients = allowed_recipients;
         policy.allowed_programs = allowed_programs;
-        emit!(PolicyCreated {policy: policy.key(), owner: policy.owner, agent});
+        emit!(PolicyCreated {
+            policy: policy.key(),
+            owner: policy.owner,
+            agent
+        });
         Ok(())
     }
     pub fn revoke_live(ctx: Context<ManageLive>) -> Result<()> {
-        require!(ctx.accounts.policy.version == LIVE_POLICY_VERSION, VeyroError::InvalidPolicy);
+        require!(
+            ctx.accounts.policy.version == LIVE_POLICY_VERSION,
+            VeyroError::InvalidPolicy
+        );
         ctx.accounts.policy.active = false;
-        emit!(Revoked {policy: ctx.accounts.policy.key(), at: Clock::get()?.unix_timestamp});
+        emit!(Revoked {
+            policy: ctx.accounts.policy.key(),
+            at: Clock::get()?.unix_timestamp
+        });
         Ok(())
     }
     pub fn execute_route<'info>(
@@ -144,11 +160,17 @@ pub mod veyro {
             VeyroError::UnsupportedTransaction
         );
         validate_route_transaction(&ctx.accounts.instructions)?;
-        require!(!route_data.is_empty() && route_data.len() <= 1_024, VeyroError::InvalidRoute);
+        require!(
+            !route_data.is_empty() && route_data.len() <= 1_024,
+            VeyroError::InvalidRoute
+        );
         let policy_key = ctx.accounts.policy.key();
         let (owner, agent, bump, quote_mint) = {
             let policy = &ctx.accounts.policy;
-            require!(policy.version == LIVE_POLICY_VERSION, VeyroError::InvalidPolicy);
+            require!(
+                policy.version == LIVE_POLICY_VERSION,
+                VeyroError::InvalidPolicy
+            );
             validate_spend(
                 policy.active,
                 Clock::get()?.unix_timestamp,
@@ -160,30 +182,68 @@ pub mod veyro {
                 policy.spent,
                 policy.total_limit,
             )?;
-            require!(policy.allowed_programs.contains(ctx.accounts.route_program.key), VeyroError::ProgramNotAllowed);
+            require!(
+                policy
+                    .allowed_programs
+                    .contains(ctx.accounts.route_program.key),
+                VeyroError::ProgramNotAllowed
+            );
             (policy.owner, policy.agent, policy.bump, policy.quote_mint)
         };
         validate_token(&ctx.accounts.vault, &quote_mint, &policy_key)?;
         let recipient_authority = token_authority(&ctx.accounts.destination)?;
-        require!(ctx.accounts.policy.allowed_recipients.contains(&recipient_authority), VeyroError::RecipientNotAllowed);
+        require!(
+            ctx.accounts
+                .policy
+                .allowed_recipients
+                .contains(&recipient_authority),
+            VeyroError::RecipientNotAllowed
+        );
         validate_destination_token(&ctx.accounts.destination, &recipient_authority)?;
-        require!(ctx.accounts.vault.key() != ctx.accounts.destination.key(), VeyroError::InvalidAccounts);
+        require!(
+            ctx.accounts.vault.key() != ctx.accounts.destination.key(),
+            VeyroError::InvalidAccounts
+        );
         let source_before = token_amount(&ctx.accounts.vault)?;
         let destination_before = token_amount(&ctx.accounts.destination)?;
 
-        let route_accounts: Vec<AccountMeta> = ctx.remaining_accounts.iter().map(|account| {
-            if account.key() == policy_key {
-                AccountMeta::new_readonly(policy_key, true)
-            } else if account.is_writable {
-                AccountMeta::new(account.key(), false)
-            } else {
-                AccountMeta::new_readonly(account.key(), false)
-            }
-        }).collect();
-        require!(route_accounts.iter().any(|account| account.pubkey == policy_key && account.is_signer), VeyroError::InvalidRoute);
-        require!(route_accounts.iter().any(|account| account.pubkey == ctx.accounts.vault.key() && account.is_writable), VeyroError::InvalidRoute);
-        require!(route_accounts.iter().any(|account| account.pubkey == ctx.accounts.destination.key() && account.is_writable), VeyroError::InvalidRoute);
-        let route = Instruction {program_id: ctx.accounts.route_program.key(), accounts: route_accounts, data: route_data};
+        let route_accounts: Vec<AccountMeta> = ctx
+            .remaining_accounts
+            .iter()
+            .map(|account| {
+                if account.key() == policy_key {
+                    AccountMeta::new_readonly(policy_key, true)
+                } else if account.is_writable {
+                    AccountMeta::new(account.key(), false)
+                } else {
+                    AccountMeta::new_readonly(account.key(), false)
+                }
+            })
+            .collect();
+        require!(
+            route_accounts
+                .iter()
+                .any(|account| account.pubkey == policy_key && account.is_signer),
+            VeyroError::InvalidRoute
+        );
+        require!(
+            route_accounts
+                .iter()
+                .any(|account| account.pubkey == ctx.accounts.vault.key() && account.is_writable),
+            VeyroError::InvalidRoute
+        );
+        require!(
+            route_accounts
+                .iter()
+                .any(|account| account.pubkey == ctx.accounts.destination.key()
+                    && account.is_writable),
+            VeyroError::InvalidRoute
+        );
+        let route = Instruction {
+            program_id: ctx.accounts.route_program.key(),
+            accounts: route_accounts,
+            data: route_data,
+        };
         let mut account_infos: Vec<AccountInfo> = ctx.remaining_accounts.iter().cloned().collect();
         account_infos.push(ctx.accounts.policy.to_account_info());
         account_infos.push(ctx.accounts.route_program.to_account_info());
@@ -193,25 +253,62 @@ pub mod veyro {
 
         let source_after = token_amount(&ctx.accounts.vault)?;
         let destination_after = token_amount(&ctx.accounts.destination)?;
-        let debited = source_before.checked_sub(source_after).ok_or(VeyroError::InvalidRoute)?;
-        let received = destination_after.checked_sub(destination_before).ok_or(VeyroError::InvalidRoute)?;
-        require!(debited > 0 && debited <= amount, VeyroError::RouteDebitMismatch);
-        require!(received >= min_output && min_output > 0, VeyroError::MinimumOutputNotMet);
+        let debited = source_before
+            .checked_sub(source_after)
+            .ok_or(VeyroError::InvalidRoute)?;
+        let received = destination_after
+            .checked_sub(destination_before)
+            .ok_or(VeyroError::InvalidRoute)?;
+        require!(
+            debited > 0 && debited <= amount,
+            VeyroError::RouteDebitMismatch
+        );
+        require!(
+            received >= min_output && min_output > 0,
+            VeyroError::MinimumOutputNotMet
+        );
         let policy = &mut ctx.accounts.policy;
-        policy.spent = policy.spent.checked_add(debited).ok_or(VeyroError::Overflow)?;
+        policy.spent = policy
+            .spent
+            .checked_add(debited)
+            .ok_or(VeyroError::Overflow)?;
         policy.nonce = policy.nonce.checked_add(1).ok_or(VeyroError::Overflow)?;
-        emit!(RouteExecuted {policy: policy.key(), agent: policy.agent, route_program: ctx.accounts.route_program.key(), amount: debited, output: received, nonce, spent: policy.spent, at: Clock::get()?.unix_timestamp});
+        emit!(RouteExecuted {
+            policy: policy.key(),
+            agent: policy.agent,
+            route_program: ctx.accounts.route_program.key(),
+            amount: debited,
+            output: received,
+            nonce,
+            spent: policy.spent,
+            at: Clock::get()?.unix_timestamp
+        });
         Ok(())
     }
     pub fn recover_live(ctx: Context<RecoverLive>, amount: u64) -> Result<()> {
         let policy = &ctx.accounts.policy;
-        require!(policy.version == LIVE_POLICY_VERSION, VeyroError::InvalidPolicy);
+        require!(
+            policy.version == LIVE_POLICY_VERSION,
+            VeyroError::InvalidPolicy
+        );
         require!(!policy.active, VeyroError::MustRevoke);
         validate_token(&ctx.accounts.vault, &policy.quote_mint, &policy.key())?;
         validate_token(&ctx.accounts.destination, &policy.quote_mint, &policy.owner)?;
         let bump = [policy.bump];
-        let seeds: &[&[u8]] = &[b"live-policy", policy.owner.as_ref(), policy.agent.as_ref(), &bump];
-        transfer(&ctx.accounts.token_program, &ctx.accounts.vault, &ctx.accounts.destination, &policy.to_account_info(), amount, seeds)
+        let seeds: &[&[u8]] = &[
+            b"live-policy",
+            policy.owner.as_ref(),
+            policy.agent.as_ref(),
+            &bump,
+        ];
+        transfer(
+            &ctx.accounts.token_program,
+            &ctx.accounts.vault,
+            &ctx.accounts.destination,
+            &policy.to_account_info(),
+            amount,
+            seeds,
+        )
     }
     pub fn revoke(ctx: Context<Manage>) -> Result<()> {
         require!(
@@ -396,11 +493,20 @@ fn validate_allowlists(recipients: &[Pubkey], programs: &[Pubkey]) -> Result<()>
 fn validate_route_transaction(instructions: &AccountInfo) -> Result<()> {
     let current = load_current_index_checked(instructions)? as usize;
     let current_instruction = load_instruction_at_checked(current, instructions)?;
-    require!(current_instruction.program_id == crate::ID, VeyroError::UnsupportedTransaction);
+    require!(
+        current_instruction.program_id == crate::ID,
+        VeyroError::UnsupportedTransaction
+    );
     for index in 0..current {
-        require!(load_instruction_at_checked(index, instructions)?.program_id == COMPUTE_BUDGET, VeyroError::UnsupportedTransaction);
+        require!(
+            load_instruction_at_checked(index, instructions)?.program_id == COMPUTE_BUDGET,
+            VeyroError::UnsupportedTransaction
+        );
     }
-    require!(load_instruction_at_checked(current + 1, instructions).is_err(), VeyroError::UnsupportedTransaction);
+    require!(
+        load_instruction_at_checked(current + 1, instructions).is_err(),
+        VeyroError::UnsupportedTransaction
+    );
     Ok(())
 }
 fn validate_mint(info: &AccountInfo) -> Result<()> {
@@ -421,12 +527,19 @@ fn token_amount(info: &AccountInfo) -> Result<u64> {
     require_keys_eq!(*info.owner, TOKEN, VeyroError::InvalidAccounts);
     let data = info.try_borrow_data()?;
     require!(data.len() == 165, VeyroError::InvalidAccounts);
-    Ok(u64::from_le_bytes(data[64..72].try_into().map_err(|_| VeyroError::InvalidAccounts)?))
+    Ok(u64::from_le_bytes(
+        data[64..72]
+            .try_into()
+            .map_err(|_| VeyroError::InvalidAccounts)?,
+    ))
 }
 fn validate_destination_token(info: &AccountInfo, authority: &Pubkey) -> Result<()> {
     require_keys_eq!(*info.owner, TOKEN, VeyroError::InvalidAccounts);
     let data = info.try_borrow_data()?;
-    require!(data.len() == 165 && &data[32..64] == authority.as_ref() && data[108] == 1, VeyroError::RecipientNotAllowed);
+    require!(
+        data.len() == 165 && &data[32..64] == authority.as_ref() && data[108] == 1,
+        VeyroError::RecipientNotAllowed
+    );
     Ok(())
 }
 // Classic SPL Token only. Reject extensions, delegates, frozen/uninitialized/native accounts.
@@ -644,7 +757,8 @@ pub struct LivePolicy {
     pub allowed_programs: Vec<Pubkey>,
 }
 impl LivePolicy {
-    pub const SPACE: usize = 8 + 1 + 32 * 4 + 8 * 5 + 2 + 4 + 32 * MAX_RECIPIENTS + 4 + 32 * MAX_PROGRAMS;
+    pub const SPACE: usize =
+        8 + 1 + 32 * 4 + 8 * 5 + 2 + 4 + 32 * MAX_RECIPIENTS + 4 + 32 * MAX_PROGRAMS;
 }
 #[event]
 pub struct PolicyCreated {

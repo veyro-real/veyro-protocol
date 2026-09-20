@@ -50,8 +50,20 @@ unsafe fn deserialize(input: *mut u8) -> Result<([RawAccount; 2], usize, &'stati
         return Err(INVALID_ARGUMENT);
     }
     let mut accounts = [
-        RawAccount { is_signer: false, is_writable: false, key: core::ptr::null(), data: core::ptr::null_mut(), data_len: 0 },
-        RawAccount { is_signer: false, is_writable: false, key: core::ptr::null(), data: core::ptr::null_mut(), data_len: 0 },
+        RawAccount {
+            is_signer: false,
+            is_writable: false,
+            key: core::ptr::null(),
+            data: core::ptr::null_mut(),
+            data_len: 0,
+        },
+        RawAccount {
+            is_signer: false,
+            is_writable: false,
+            key: core::ptr::null(),
+            data: core::ptr::null_mut(),
+            data_len: 0,
+        },
     ];
     for slot in accounts.iter_mut().take(count) {
         let dup = *input.add(offset);
@@ -94,7 +106,9 @@ fn create_policy(accounts: [RawAccount; 2], count: usize, data: &[u8]) -> u64 {
     if policy.data_len < POLICY_LEN {
         return ACCOUNT_DATA_TOO_SMALL;
     }
-    unsafe { write_policy(policy.data, owner.key, data); }
+    unsafe {
+        write_policy(policy.data, owner.key, data);
+    }
     OK
 }
 
@@ -106,7 +120,10 @@ fn revoke_policy(accounts: [RawAccount; 2], count: usize) -> u64 {
         return MISSING_REQUIRED_SIGNATURES;
     }
     unsafe {
-        if accounts[1].data_len < POLICY_LEN || *accounts[1].data != VERSION || !same(accounts[1].data.add(2), accounts[0].key) {
+        if accounts[1].data_len < POLICY_LEN
+            || *accounts[1].data != VERSION
+            || !same(accounts[1].data.add(2), accounts[0].key)
+        {
             return INVALID_ACCOUNT_DATA;
         }
         *accounts[1].data.add(1) = 0;
@@ -119,16 +136,27 @@ fn check_spend(accounts: [RawAccount; 2], count: usize, data: &[u8]) -> u64 {
         return NOT_ENOUGH_ACCOUNT_KEYS;
     }
     if !accounts[0].is_signer || data.len() != 65 {
-        return if data.len() == 65 { MISSING_REQUIRED_SIGNATURES } else { INVALID_INSTRUCTION_DATA };
+        return if data.len() == 65 {
+            MISSING_REQUIRED_SIGNATURES
+        } else {
+            INVALID_INSTRUCTION_DATA
+        };
     }
     unsafe {
         let out = accounts[1].data;
-        if accounts[1].data_len < POLICY_LEN || *out != VERSION || *out.add(1) != 1 || !same(out.add(34), accounts[0].key) {
+        if accounts[1].data_len < POLICY_LEN
+            || *out != VERSION
+            || *out.add(1) != 1
+            || !same(out.add(34), accounts[0].key)
+        {
             return INVALID_ACCOUNT_DATA;
         }
         let amount = le_u64(data.as_ptr().add(1));
         let spent = le_u64(out.add(82));
-        if amount == 0 || amount > le_u64(out.add(66)) || le_u64(data.as_ptr().add(9)) > le_u64(out.add(90)) {
+        if amount == 0
+            || amount > le_u64(out.add(66))
+            || le_u64(data.as_ptr().add(9)) > le_u64(out.add(90))
+        {
             return INVALID_ARGUMENT;
         }
         let next = match spent.checked_add(amount) {
@@ -138,7 +166,9 @@ fn check_spend(accounts: [RawAccount; 2], count: usize, data: &[u8]) -> u64 {
         if next > le_u64(out.add(74)) {
             return INSUFFICIENT_FUNDS;
         }
-        if !same(out.add(106), data.as_ptr().add(17)) || !same16(out.add(138), data.as_ptr().add(49)) {
+        if !same(out.add(106), data.as_ptr().add(17))
+            || !same16(out.add(138), data.as_ptr().add(49))
+        {
             return INVALID_ARGUMENT;
         }
         let nonce = match le_u64(out.add(98)).checked_add(1) {
