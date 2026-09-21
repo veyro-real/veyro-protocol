@@ -1,0 +1,20 @@
+[package]
+name = "veyro-sdk"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.70"
+description = "Client-side helpers for Veyro spending policies on Solana: build a policy the program will accept, and size a spend a policy will authorize."
+repository = "https://github.com/veyro-real/veyro-protocol"
+license = "Apache-2.0"
+keywords = ["solana", "authorization", "spending", "policy", "agent"]
+categories = ["no-std", "cryptography::cryptocurrencies"]
+readme = "README.md"
+
+[dependencies]
+veyro = { version = "0.1.0", path = "../veyro", default-features = false }
+
+[features]
+default = ["std"]
+std = ["veyro/std"]
+
+[workspace]

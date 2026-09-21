@@ -1,0 +1,17 @@
+[package]
+name = "veyro"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.70"
+description = "Spend-authorization rules for the Veyro Solana program: per-transaction ceilings, cumulative budgets, expiry, nonces and allowlist bounds, as pure no_std logic with no dependencies."
+repository = "https://github.com/veyro-real/veyro-protocol"
+license = "Apache-2.0"
+keywords = ["solana", "authorization", "spending", "policy", "agent"]
+categories = ["no-std", "cryptography::cryptocurrencies"]
+readme = "README.md"
+
+[features]
+default = ["std"]
+std = []
+
+[workspace]
